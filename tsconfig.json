@@ -20,7 +20,8 @@
 		"paths": {
 			"@client/*": ["./src/client/*"],
 			"@supplier/*": ["./src/supplier/*"],
-			"@appointment/*": ["./src/appointment/*"]
+			"@appointment/*": ["./src/appointment/*"],
+			"@task/*": ["./src/task/*"]
 		}
 	}
 }
