@@ -19,7 +19,8 @@
 		"noFallthroughCasesInSwitch": false,
 		"paths": {
 			"@client/*": ["./src/client/*"],
-			"@supplier/*": ["./src/supplier/*"]
+			"@supplier/*": ["./src/supplier/*"],
+			"@appointment/*": ["./src/appointment/*"]
 		}
 	}
 }
