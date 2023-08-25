@@ -1,18 +1,52 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateClientDto, UpdateClientDto } from '@client/dto';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { IClient } from '@client/interfaces';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export default class ClientService {
-	create(createClientDto: CreateClientDto) {
-		return `This action adds a new client ${createClientDto.name}`;
+	constructor(private readonly prisma: PrismaService) {}
+
+	async create(createClientDto: CreateClientDto): Promise<IClient> {
+		const hashedPassword = await bcrypt.hash(createClientDto.password, 10);
+
+		const data = {
+			...createClientDto,
+			password: hashedPassword,
+			createdAt: new Date(),
+			updatedAt: new Date(),
+		};
+
+		const createdClient = await this.prisma.client.create({ data });
+
+		return {
+			...createdClient,
+			password: undefined,
+		};
 	}
 
-	findAll() {
-		return `This action returns all client`;
+	async findAll() {
+		const allClients = await this.prisma.client.findMany();
+		const clientsWithoutPasswords = allClients.map(
+			// eslint-disable-next-line @typescript-eslint/no-unused-vars
+			({ password, ...client }) => client,
+		);
+		return clientsWithoutPasswords;
 	}
 
-	findOne(id: number) {
-		return `This action returns a #${id} client`;
+	async findOne(id: string) {
+		const client = await this.prisma.client.findUnique({
+			where: { id },
+		});
+
+		if (!client) {
+			throw new NotFoundException(`Client with ID ${id} not found`);
+		}
+
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		const { password, ...clientWithoutPassword } = client;
+		return clientWithoutPassword;
 	}
 
 	update(id: number, updateClientDto: UpdateClientDto) {

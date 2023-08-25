@@ -8,7 +8,13 @@ import { TaskModule } from './task/task.module';
 import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
-	imports: [ClientModule, SupplierModule, AppointmentModule, TaskModule, PrismaModule],
+	imports: [
+		ClientModule,
+		SupplierModule,
+		AppointmentModule,
+		TaskModule,
+		PrismaModule,
+	],
 	controllers: [AppController],
 	providers: [AppService],
 })

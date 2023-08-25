@@ -8,14 +8,16 @@ datasource db {
 }
 
 model Client {
-  id       String @id @default(uuid())
-  name     String
-  email    String @unique @db.VarChar(255)
-  password String
-  phone    String
-  street   String
-  number   Int
-  city     String
-  state    String
-  zipCode  String
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique @db.VarChar(255)
+  password  String
+  phone     String
+  street    String
+  number    Int
+  city      String
+  state     String
+  zipCode   String
+  createdAt DateTime
+  updatedAt DateTime @updatedAt
 }
