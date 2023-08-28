@@ -31,6 +31,18 @@ export default class ClientService {
 		return clientWithoutPassword;
 	}
 
+	async findByEmail(email: string) {
+		const client = await this.prisma.client.findUnique({
+			where: { email },
+		});
+
+		if (!client) {
+			throw new NotFoundException(`Client with email ${email} not found`);
+		}
+
+		return client;
+	}
+
 	async create(createClientDto: CreateClientDto): Promise<IClient> {
 		const hashedPassword = await bcrypt.hash(createClientDto.password, 10);
 
