@@ -6,6 +6,7 @@ import { SupplierModule } from './supplier/supplier.module';
 import { AppointmentModule } from './appointment/appointment.module';
 import { TaskModule } from './task/task.module';
 import { PrismaModule } from './prisma/prisma.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
 	imports: [
@@ -14,6 +15,7 @@ import { PrismaModule } from './prisma/prisma.module';
 		AppointmentModule,
 		TaskModule,
 		PrismaModule,
+		AuthModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],
