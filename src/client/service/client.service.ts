@@ -59,8 +59,14 @@ export default class ClientService {
 		};
 	}
 
-	async update(id: string, updateClientDto: UpdateClientDto): Promise<IClient> {
-		const hashedPassword = await bcrypt.hash(updateClientDto.password, 10);
+	async update(id: string, updateClientDto: UpdateClientDto) {
+		const updatedClientData = { ...updateClientDto };
+
+		if (updateClientDto.password) {
+			const hashedPassword = await bcrypt.hash(updateClientDto.password, 10);
+			updatedClientData.password = hashedPassword;
+		}
+
 		const client = await this.prisma.client.findUnique({
 			where: { id },
 		});
@@ -69,20 +75,15 @@ export default class ClientService {
 			throw new NotFoundException(`Client with ID ${id} not found`);
 		}
 
-		const updatedClientData = {
-			...updateClientDto,
-		};
-
-		if (updateClientDto.password) {
-			updatedClientData.password = hashedPassword;
-		}
-
 		const updatedClient = await this.prisma.client.update({
 			where: { id },
 			data: updatedClientData,
 		});
 
-		return updatedClient;
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		const { password, ...clientDataWithoutPassword } = updatedClient;
+
+		return clientDataWithoutPassword;
 	}
 
 	async remove(id: string) {

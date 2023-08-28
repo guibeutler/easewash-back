@@ -14,6 +14,6 @@ export default interface ISupplier {
 	zipCode: string;
 	createdAt: Date;
 	updatedAt: Date;
-	services: ITask[];
-	appointments: IAppointment[];
+	services?: ITask[];
+	appointments?: IAppointment[];
 }

@@ -37,7 +37,7 @@ model Supplier {
   state        String
   zipCode      String
   createdAt    DateTime      @default(now())
-  updetedAt    DateTime      @updatedAt
+  updatedAt    DateTime      @updatedAt
   services     Task[]
   appointments Appointment[]
 }
@@ -49,7 +49,7 @@ model Task {
   taskImg     String
   price       String
   createdAt   DateTime @default(now())
-  updetedAt   DateTime @updatedAt
+  updatedAt   DateTime @updatedAt
   Supplier    Supplier @relation(fields: [supplierId], references: [id])
   supplierId  String
 }
