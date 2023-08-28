@@ -26,7 +26,7 @@ export default class AppointmentController {
 
 	@Get(':id')
 	findOne(@Param('id') id: string) {
-		return this.appointmentService.findOne(+id);
+		return this.appointmentService.findOne(id);
 	}
 
 	@Patch(':id')
@@ -34,11 +34,11 @@ export default class AppointmentController {
 		@Param('id') id: string,
 		@Body() updateAppointmentDto: UpdateAppointmentDto,
 	) {
-		return this.appointmentService.update(+id, updateAppointmentDto);
+		return this.appointmentService.update(id, updateAppointmentDto);
 	}
 
 	@Delete(':id')
 	remove(@Param('id') id: string) {
-		return this.appointmentService.remove(+id);
+		return this.appointmentService.remove(id);
 	}
 }

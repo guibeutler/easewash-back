@@ -10,6 +10,6 @@ export default interface IAppointment {
 	status: string;
 	createdAt: Date;
 	updatedAt: Date;
-	supplier: ISupplier;
-	client: IClient;
+	supplier?: ISupplier;
+	client?: IClient;
 }
