@@ -8,24 +8,6 @@ import * as bcrypt from 'bcrypt';
 export default class ClientService {
 	constructor(private readonly prisma: PrismaService) {}
 
-	async create(createClientDto: CreateClientDto): Promise<IClient> {
-		const hashedPassword = await bcrypt.hash(createClientDto.password, 10);
-
-		const data = {
-			...createClientDto,
-			password: hashedPassword,
-			createdAt: new Date(),
-			updatedAt: new Date(),
-		};
-
-		const createdClient = await this.prisma.client.create({ data });
-
-		return {
-			...createdClient,
-			password: undefined,
-		};
-	}
-
 	async findAll() {
 		const allClients = await this.prisma.client.findMany();
 		const clientsWithoutPasswords = allClients.map(
@@ -49,11 +31,71 @@ export default class ClientService {
 		return clientWithoutPassword;
 	}
 
-	update(id: number, updateClientDto: UpdateClientDto) {
-		return `This action updates a #${id} client ${updateClientDto.name}`;
+	async create(createClientDto: CreateClientDto): Promise<IClient> {
+		const hashedPassword = await bcrypt.hash(createClientDto.password, 10);
+
+		const checkEmail = await this.prisma.client.findUnique({
+			where: { email: createClientDto.email },
+		});
+
+		if (checkEmail) {
+			throw new NotFoundException(
+				`Client with email ${createClientDto.email} already exists`,
+			);
+		}
+
+		const clientData = {
+			...createClientDto,
+			password: hashedPassword,
+			createdAt: new Date(),
+			updatedAt: new Date(),
+		};
+
+		const createdClient = await this.prisma.client.create({ data: clientData });
+
+		return {
+			...createdClient,
+			password: undefined,
+		};
 	}
 
-	remove(id: number) {
-		return `This action removes a #${id} client`;
+	async update(id: string, updateClientDto: UpdateClientDto): Promise<IClient> {
+		const hashedPassword = await bcrypt.hash(updateClientDto.password, 10);
+		const client = await this.prisma.client.findUnique({
+			where: { id },
+		});
+
+		if (!client) {
+			throw new NotFoundException(`Client with ID ${id} not found`);
+		}
+
+		const updatedClientData = {
+			...updateClientDto,
+		};
+
+		if (updateClientDto.password) {
+			updatedClientData.password = hashedPassword;
+		}
+
+		const updatedClient = await this.prisma.client.update({
+			where: { id },
+			data: updatedClientData,
+		});
+
+		return updatedClient;
+	}
+
+	async remove(id: string) {
+		const client = await this.prisma.client.findUnique({
+			where: { id },
+		});
+
+		if (!client) {
+			throw new NotFoundException(`Client with ID ${id} not found`);
+		}
+
+		await this.prisma.client.delete({ where: { id } });
+
+		return `Client with ID ${id} has been successfully deleted`;
 	}
 }

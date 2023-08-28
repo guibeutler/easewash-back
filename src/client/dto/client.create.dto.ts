@@ -22,6 +22,9 @@ export default class CreateClientDto {
 	})
 	password: string;
 
+	@IsString({ message: 'Profile image must be a string' })
+	profileImg: string;
+
 	@IsString({ message: 'Phone must be a string' })
 	phone: string;
 

@@ -1,10 +1,5 @@
-export default interface ISupplierAddress {
-	street: string;
-	number: string;
-	city: string;
-	state: string;
-	zipCode: string;
-}
+import { IAppointment } from '@appointment/interfaces';
+import ITask from '@task/interfaces/task.interface';
 
 export default interface ISupplier {
 	id: string;
@@ -12,11 +7,13 @@ export default interface ISupplier {
 	email: string;
 	password: string;
 	phone: string;
-	address: ISupplierAddress;
-	cpf?: string;
-	cnpj?: string;
+	street: string;
+	number: number;
+	city: string;
+	state: string;
+	zipCode: string;
 	createdAt: Date;
 	updatedAt: Date;
-	services: string[];
-	appointments: string[];
+	services: ITask[];
+	appointments: IAppointment[];
 }

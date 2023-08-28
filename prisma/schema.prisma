@@ -8,16 +8,61 @@ datasource db {
 }
 
 model Client {
-  id        String   @id @default(uuid())
-  name      String
-  email     String   @unique @db.VarChar(255)
-  password  String
-  phone     String
-  street    String
-  number    Int
-  city      String
-  state     String
-  zipCode   String
-  createdAt DateTime
-  updatedAt DateTime @updatedAt
+  id           String        @id @default(uuid())
+  name         String
+  email        String        @unique @db.VarChar(255)
+  password     String
+  profileImg   String
+  phone        String
+  street       String
+  number       Int
+  city         String
+  state        String
+  zipCode      String
+  createdAt    DateTime
+  updatedAt    DateTime      @updatedAt
+  appointments Appointment[]
+}
+
+model Supplier {
+  id           String        @id @default(uuid())
+  name         String
+  email        String        @unique @db.VarChar(255)
+  password     String
+  profileImg   String
+  phone        String
+  street       String
+  number       Int
+  city         String
+  state        String
+  zipCode      String
+  createdAt    DateTime      @default(now())
+  updetedAt    DateTime      @updatedAt
+  services     Task[]
+  appointments Appointment[]
+}
+
+model Task {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  taskImg     String
+  price       String
+  createdAt   DateTime @default(now())
+  updetedAt   DateTime @updatedAt
+  Supplier    Supplier @relation(fields: [supplierId], references: [id])
+  supplierId  String
+}
+
+model Appointment {
+  id         String   @id @default(uuid())
+  supplierId String
+  clientId   String
+  startTime  DateTime
+  endTime    DateTime
+  status     String
+  createdAt  DateTime
+  updatedAt  DateTime @updatedAt
+  supplier   Supplier @relation(fields: [supplierId], references: [id])
+  client     Client   @relation(fields: [clientId], references: [id])
 }
