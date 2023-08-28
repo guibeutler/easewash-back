@@ -32,6 +32,18 @@ export default class SupplierService {
 		return supplierWithoutPassword;
 	}
 
+	async findByEmail(email: string) {
+		const supplier = await this.prisma.supplier.findUnique({
+			where: { email },
+		});
+
+		if (!supplier) {
+			throw new NotFoundException(`Supplier with email ${email} not found`);
+		}
+
+		return supplier;
+	}
+
 	async create(createSupplierDto: CreateSupplierDto): Promise<ISupplier> {
 		const hashedPassword = await bcrypt.hash(createSupplierDto.password, 10);
 
