@@ -4,9 +4,9 @@ export default interface ITask {
 	id: string;
 	title: string;
 	description: string;
-	price: number;
+	price: string;
 	createdAt: Date;
 	updatedAt: Date;
-	supplier: ISupplier;
+	supplier?: ISupplier;
 	supplierId: string;
 }
