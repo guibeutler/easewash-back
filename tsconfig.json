@@ -18,9 +18,12 @@
 		"forceConsistentCasingInFileNames": false,
 		"noFallthroughCasesInSwitch": false,
 		"paths": {
-			"@client/*": ["./src/client/*"],
-			"@supplier/*": ["./src/supplier/*"],
+			"@/*": ["./src/*"],
 			"@appointment/*": ["./src/appointment/*"],
+			"@auth/*": ["./src/auth/*"],
+			"@client/*": ["./src/client/*"],
+			"@prisma/*": ["./src/prisma/*"],
+			"@supplier/*": ["./src/supplier/*"],
 			"@task/*": ["./src/task/*"]
 		}
 	}

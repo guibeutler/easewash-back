@@ -1,6 +1,6 @@
 import { IsEmail, IsString } from 'class-validator';
 
-export class LoginRequestBody {
+export default class LoginRequestBody {
 	@IsEmail()
 	email: string;
 

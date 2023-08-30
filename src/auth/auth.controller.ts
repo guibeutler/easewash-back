@@ -6,10 +6,10 @@ import {
 	UseGuards,
 	Request,
 } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { LocalAuthGuard } from './guards/local-auth.guard';
-import { AuthRequest } from './models/AuthRequest';
-import { IsPublic } from './decorators/is-public.decorator';
+import { AuthService } from '@auth/auth.service';
+import { LocalAuthGuard } from '@auth/guards/local-auth.guard';
+import { AuthRequest } from '@auth/models';
+import { IsPublic } from '@auth/decorators/is-public.decorator';
 
 @Controller()
 export class AuthController {

@@ -1,5 +1,5 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
-import { AuthRequest } from '../models/AuthRequest';
+import { AuthRequest } from '@auth/models';
 import { IClient } from '@client/interfaces';
 import { ISupplier } from '@supplier/interfaces';
 

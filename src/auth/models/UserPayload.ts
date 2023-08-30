@@ -1,4 +1,4 @@
-export interface UserPayload {
+export default interface UserPayload {
 	sub: string;
 	email: string;
 	name: string;

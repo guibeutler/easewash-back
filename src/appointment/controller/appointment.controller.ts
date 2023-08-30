@@ -1,3 +1,4 @@
+import { ApiHeader, ApiTags } from '@nestjs/swagger';
 import {
 	Controller,
 	Get,
@@ -7,9 +8,8 @@ import {
 	Param,
 	Delete,
 } from '@nestjs/common';
-import AppointmentService from '@appointment/services/appointment.service';
 import { CreateAppointmentDto, UpdateAppointmentDto } from '@appointment/dto';
-import { ApiHeader, ApiTags } from '@nestjs/swagger';
+import AppointmentService from '@appointment/services/appointment.service';
 
 @ApiTags('appointment')
 @Controller('appointment')

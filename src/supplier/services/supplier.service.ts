@@ -1,8 +1,8 @@
+import * as bcrypt from 'bcrypt';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateSupplierDto, UpdateSupplierDto } from '@supplier/dto';
 import { ISupplier } from '@supplier/interfaces';
-import * as bcrypt from 'bcrypt';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from '@prisma/prisma.service';
 
 @Injectable()
 export default class SupplierService {
