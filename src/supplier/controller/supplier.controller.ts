@@ -7,10 +7,10 @@ import {
 	Param,
 	Delete,
 } from '@nestjs/common';
+import { ApiHeader, ApiTags } from '@nestjs/swagger';
 import SupplierService from '@supplier/services/supplier.service';
 import { CreateSupplierDto, UpdateSupplierDto } from '@supplier/dto';
-import { ApiHeader, ApiTags } from '@nestjs/swagger';
-import { IsPublic } from 'src/auth/decorators/is-public.decorator';
+import { IsPublic } from '@auth/decorators/is-public.decorator';
 
 @ApiTags('supplier')
 @Controller('supplier')
