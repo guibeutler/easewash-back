@@ -8,7 +8,7 @@ import { UserPayload, UserToken } from '@auth/models';
 import { ISupplier } from '@supplier/interfaces';
 
 @Injectable()
-export class AuthService {
+export default class AuthService {
 	constructor(
 		private readonly clientService: ClientService,
 		private readonly supplierService: SupplierService,

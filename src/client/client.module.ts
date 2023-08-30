@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { PrismaModule } from '@prisma/prisma.module';
+import PrismaModule from '@prisma/prisma.module';
 import ClientController from '@client/controller/client.controller';
 import ClientService from '@client/service/client.service';
 
@@ -9,4 +9,4 @@ import ClientService from '@client/service/client.service';
 	providers: [ClientService],
 	exports: [ClientService],
 })
-export class ClientModule {}
+export default class ClientModule {}

@@ -1,1 +1,1 @@
-export { default as Itask } from '@task/interfaces/task.interface';
+export { default as ITask } from '@task/interfaces/task.interface';
