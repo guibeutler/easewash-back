@@ -15,4 +15,5 @@ export default interface IClient {
 	createdAt: Date;
 	updatedAt: Date;
 	appointments?: IAppointment[];
+	role?: string;
 }

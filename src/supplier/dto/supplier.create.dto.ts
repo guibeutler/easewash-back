@@ -42,4 +42,7 @@ export default class CreateSupplierDto {
 
 	@IsString({ message: 'Zip code must be a string' })
 	zipCode: string;
+
+	@IsString({ message: 'Role must be a string' })
+	role: string;
 }

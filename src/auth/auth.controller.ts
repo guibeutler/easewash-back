@@ -20,6 +20,12 @@ export class AuthController {
 	@HttpCode(HttpStatus.OK)
 	@UseGuards(LocalAuthGuard)
 	login(@Request() req: AuthRequest) {
-		return this.authService.login(req.user);
+		const userToken = this.authService.login(req.user);
+		const redirectTo = req.user.role === 'supplier' ? 'supplier' : 'client';
+
+		return {
+			...userToken,
+			redirectTo,
+		};
 	}
 }

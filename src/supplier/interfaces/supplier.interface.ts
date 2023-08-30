@@ -16,4 +16,5 @@ export default interface ISupplier {
 	updatedAt: Date;
 	services?: ITask[];
 	appointments?: IAppointment[];
+	role?: string;
 }

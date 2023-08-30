@@ -36,6 +36,8 @@ export class AuthService {
 			this.supplierService.findByEmail(email),
 		]);
 
+		const role = user.role === 'client' ? 'client' : 'supplier';
+
 		if (user) {
 			const isValidPassword = await bcrypt.compare(password, user.password);
 
@@ -43,6 +45,7 @@ export class AuthService {
 				return {
 					...user,
 					password: undefined,
+					role,
 				};
 			}
 		}
