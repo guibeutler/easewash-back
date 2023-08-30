@@ -10,12 +10,14 @@ import {
 import SupplierService from '@supplier/services/supplier.service';
 import { CreateSupplierDto, UpdateSupplierDto } from '@supplier/dto';
 import { ApiHeader, ApiTags } from '@nestjs/swagger';
+import { IsPublic } from 'src/auth/decorators/is-public.decorator';
 
 @ApiTags('supplier')
 @Controller('supplier')
 export default class SupplierController {
 	constructor(private readonly supplierService: SupplierService) {}
 
+	@IsPublic()
 	@ApiHeader({
 		name: 'Authorization',
 		description: 'Bearer token',

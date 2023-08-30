@@ -10,12 +10,14 @@ import {
 import ClientService from '@client/service/client.service';
 import { CreateClientDto, UpdateClientDto } from '@client/dto';
 import { ApiHeader, ApiTags } from '@nestjs/swagger';
+import { IsPublic } from 'src/auth/decorators/is-public.decorator';
 
 @ApiTags('client')
 @Controller('client')
 export default class ClientController {
 	constructor(private readonly clientService: ClientService) {}
 
+	@IsPublic()
 	@ApiHeader({
 		name: 'Authorization',
 		description: 'Bearer token',
