@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
 import JwtAuthGuard from '../src/auth/guards/jwt-auth.guard';
-import ClientModule from '@client/client.module';
-import SupplierModule from '@supplier/supplier.module';
-import AppointmentModule from '@appointment/appointment.module';
-import TaskModule from '@task/task.module';
-import PrismaModule from '@prisma/prisma.module';
-import AuthModule from '@auth/auth.module';
+import ClientModule from '../src/client/client.module';
+import SupplierModule from '../src/supplier/supplier.module';
+import AppointmentModule from '../src/appointment/appointment.module';
+import TaskModule from '../src/task/task.module';
+import PrismaModule from '../src/prisma/prisma.module';
+import AuthModule from '../src/auth/auth.module';
 
 @Module({
 	imports: [
