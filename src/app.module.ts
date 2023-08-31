@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
-import JwtAuthGuard from '@auth/guards/jwt-auth.guard';
+import JwtAuthGuard from '../src/auth/guards/jwt-auth.guard';
 import ClientModule from '@client/client.module';
 import SupplierModule from '@supplier/supplier.module';
 import AppointmentModule from '@appointment/appointment.module';
